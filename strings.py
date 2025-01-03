@@ -128,3 +128,53 @@ print("----------------------------------------")
 text = "А роза упала на лапу Азора"
 prepared_text = text.casefold().replace(' ', '')
 print(prepared_text == prepared_text[::-1])
+print("---------------join()-----------------")
+
+splitted = "Вася нехороший человек занял три рубля и отказывается отдавать!".split()
+print(splitted)
+print(", блин, ".join(splitted))
+print("connect's after every element in the list (array) and turn's into a string")
+
+print("HW-----------")
+
+text = "Три утёнка по три раза тёрли лапки потрёпанными мочалками и крякали друг другу: „смотри, мои лапки чище твоих!“ Смотри, утёнок, насквозь не протри!"
+substring = "тр"
+print(len(text.casefold().split(substring)), " : ==> ", text.split(substring))
+print(string.casefold().count(substring.casefold()))
+print("HW-----------")
+
+text = "--+-- Запись номер 1 --+--"
+print(text[:-5])
+print(text.removesuffix("--+--"))
+print("HW-----------")
+
+text = ["Да чтоб тебя таращило!", "Где мои деньги???", "Тестовый текст 3(!)", "(Что бы это ни значило :)", "!!!Куда смотрит правительство???"]
+for i in text:
+    print(i.rstrip("!().?"))
+print("---------------'%s ' %'replacement'()-----------------")
+
+print("Мы видим, что в исходной строке — она называется «шаблон» — присутствует конструкция %s. Встречая её,"
+      " интерпретатор понимает, что на это место надо вставить что-то другое. И это что-то указывается после самой строки вместе с символом %.")
+print('"%s Доу женат на Маргарет из семьи Кэссиди." % "Джон"')
+print("%s Доу женат на Маргарет из семьи Кэссиди." % "Джон")
+print("-----------")
+print('"Пицца %s лучше, чем пицца %s!" % ("Дядя Дональд", "Мама Смит")')
+print("Пицца %s лучше, чем пицца %s!" % ("Дядя Дональд", "Мама Смит"))
+print("-----------")
+
+print("При этом символ после % внутри строки имеет значение — он подсказывает "
+      "интерпретатору, переменная какого типа сюда будет вставлена. Например, s означает строку, а d — число:")
+print('"Вчера велосипедист %s проехал %d километров." % ("Вася", 50)')
+print("Вчера велосипедист %s проехал %d километров." % ("Вася", 50))
+print("---------------format()-----------------")
+print('"Пробег автомобиля с госномером {} составляет {} километров.".format("Л666АЙ77", 30000)')
+print("Пробег автомобиля с госномером {} составляет {} километров.".format("Л666АЙ77", 30000))
+print("-----------  using numbers for each of them")
+
+print('"A {1} has {0} legs and a {2} has {0} legs. So what''s the difference between a {1} and a {2}?".format(4, "cat", "dog")')
+print("A {1} has {0} legs and a {2} has {0} legs. So what's the difference between a {1} and a {2}?".format(4, "cat", "dog"))
+
+print("----------- as arguments using names for each of them")
+print('"A {animal1} has {number} legs and a {animal2} has {number} legs. So what''s the difference between a {animal1} and a {animal2}?".format(animal1="cat", animal2="dog", number=4)')
+print("A {animal1} has {number} legs and a {animal2} has {number} legs. So what's the difference between a {animal1} and a {animal2}?".format(animal1="cat", animal2="dog", number=4))
+
