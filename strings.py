@@ -128,7 +128,7 @@ print("----------------------------------------")
 text = "А роза упала на лапу Азора"
 prepared_text = text.casefold().replace(' ', '')
 print(prepared_text == prepared_text[::-1])
-print("---------------join()-----------------")
+enfdprint("---------------join()-----------------")
 
 splitted = "Вася нехороший человек занял три рубля и отказывается отдавать!".split()
 print(splitted)
