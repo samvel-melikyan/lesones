@@ -43,7 +43,7 @@ for i in range(len(clients)): # i = [0, 1, 2, 3, 4]
 
 print("---------HW----------------")
 coworkers = ['Piter', 'James', 'Souy', 'Nataly', 'Maourineo']
-new_coworker = input("                type a name: ")
+new_coworker = "CHarly" # input("                type a name: ")
 if new_coworker in coworkers:
     print("HE/SHE is already in the coworker list!")
 else:
@@ -56,27 +56,75 @@ print(f"The first coworkers is` {coworkers[1]}\nThe last is` {coworkers[-1]}")
 print(f"Every each coworker: {list(coworkers[::1])} \nEvery second coworker: {list(coworkers[::2])}")
 print(f"I have {len(coworkers)} coworkers")
 
+print("================mrthods===========")
+print("------------------extend()----------")
+clients.extend(['Oscar Martinez', 'Creed Bratton', 'Andy Bernard'])
 
+# выведем получившийся список
+print(clients)
+print("------------------insert()----------")
+print("inserts in the given index ")
+clients.insert(1, 'Oscar Martinez')
+# выведем получившийся список
+print(clients)
 
+print("----------------remove()-----------------")
+print(f'Список клиентов: {clients}')
 
+# считываем элемент, который нужно удалить
+name = "Michael Scott" # input('Введите клиента, которого нужно удалить: ')
 
+# удаляем элемент из списка
+clients.remove(name)
+print('Клиент удален из списка.')
 
+# выведем получившийся список
+print(f'Список клиентов: {clients}')
+print("При попытке удалить элемент, которого нет в списке, код «упал» с ошибкой ValueError. Чтобы избежать этого, исправляем код и добавляем в него проверку условий:")
 
+# проверка на вхождение элемента в список
+if name in clients: # элемент есть в списке
+ # удаляем элемент из списка
+ clients.remove(name)
+ print('Клиент удален из списка.')
+else: # элемента в списке нет
+ print('Данного клиента в списке нет.')
 
+# выведем получившийся список
+print(f'Список клиентов: {clients}')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+print("----------------pop()-----------------")
+print("Метод используется, когда нужно удалить элемент по его индексу, а не по значению. "
+      "\nЕсли вызвать метод и не передать в него индекс, то по умолчанию удаляется последний элемент из списка. "
+      "\nЭтот метод удаляет элемент и возвращает его в место вызова. Таким образом, удаленный элемент можно записать в переменную и пользоваться им дальше в программе, "
+      "\nесли того требует задача. Например:")
+clients = ['Michael Scott', 'Dwight Schrute', 'Jim Halpert',
+        'Pam Beesly', 'Kevin Malone']
+# удаляем клиента по индексу 0
+first_client = clients.pop(0)
+print(f'Удаленный клиент: {first_client}')
+print(f'Список клиентов: {clients}')
+print()
+print("----------------clear()-----------------")
+print("Полностью очищает массив, удаляя из него все элементы.")
+clients.clear()
+print(f'Список клиентов: {clients}')
+print()
+print("----------------index()-----------------")
+clients = ['Michael Scott']
+index = clients.index('Michael Scott')
+print(f'Индекс элемента Michael Scott: {index}', "error if element is not there")
+print()
+print("----------------sort()-----------------")
+print("По умолчанию метод сортирует в порядке возрастания, а если передать в него значение reverse=True, отсортирует в порядке убывания. Например:")
+clients = ['Michael Scott', 'Dwight Schrute', 'Jim Halpert',
+        'Pam Beesly', 'Kevin Malone']
+# сортируем список в порядке возрастания
+clients.sort()
+print(f'Сортировка в порядке возрастания: {clients}')
+# сортируем список в порядке убывания
+clients.sort(reverse=True)
+print(f'Сортировка в порядке убывания: {clients}')
 
 
 
