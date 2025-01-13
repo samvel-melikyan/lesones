@@ -128,7 +128,7 @@ print("----------------------------------------")
 text = "А роза упала на лапу Азора"
 prepared_text = text.casefold().replace(' ', '')
 print(prepared_text == prepared_text[::-1])
-enfdprint("---------------join()-----------------")
+print("---------------join()-----------------")
 
 splitted = "Вася нехороший человек занял три рубля и отказывается отдавать!".split()
 print(splitted)
@@ -177,4 +177,45 @@ print("A {1} has {0} legs and a {2} has {0} legs. So what's the difference betwe
 print("----------- as arguments using names for each of them")
 print('"A {animal1} has {number} legs and a {animal2} has {number} legs. So what''s the difference between a {animal1} and a {animal2}?".format(animal1="cat", animal2="dog", number=4)')
 print("A {animal1} has {number} legs and a {animal2} has {number} legs. So what's the difference between a {animal1} and a {animal2}?".format(animal1="cat", animal2="dog", number=4))
+
+
+# 01.01.2025
+
+print("{:.3f}".format(3.1223467))
+
+name, author = "Незнайка", "Николай Носов"
+print("{:.<30} | {:.>30}".format(name, author))
+print("# the first :.<30 - fill with '.' free spaces and then '|' then after 30th fill with '.'")
+
+
+print("---------------f-strings-----------------")
+print('-> f"Четыре чёрненьких чумазеньких {'+'чертёнка'+'} чертили чёрными чернилами чертёж."')
+print(f"Четыре чёрненьких чумазеньких {'чертёнка'} чертили чёрными чернилами чертёж.")
+year = 1992
+month = "сентября"
+day = 12
+print('-> f"Это произошло {day} {month} {year} года."' +
+    'Это произошло 12 сентября 1992 года.')
+print(f"Это произошло {day} {month} {year} года."
+    'Это произошло 12 сентября 1992 года.')
+print("--------HW0-----------------")
+
+import math
+
+radius = 15
+height = 10
+print("{:.2f}".format(math.pi * height * (radius / 100) ** 2))
+
+print("---------------mathematics operations for strings-----------------")
+
+print("word " * 5)
+
+print("--------HW-----------------")
+print(len(str(20**50)))
+print("--------HW-----------------")
+# How meny words in the text
+text = "The Roman Empire ruled the Mediterranean and much of Europe, Western Asia and North Africa. The Romans conquered most of this during the Republic, and it was ruled by emperors following Octavian's assumption of effective sole rule in 27 BC."
+print(len(text.split(" ")))
+
+
 

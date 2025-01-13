@@ -1,8 +1,5 @@
 import random
-
 import numpy
-
-from arrays import index
 
 # список учеников
 students = ['Аполлон', 'Ярослав', 'Александра', 'Дарья', 'Ангелина']
@@ -17,27 +14,26 @@ student_grades = {}
 # цикл по ученикам
 for student in students:  # 1 итерация: student = 'Александра'
     students_marks[student] = {}  # 1 итерация: students_marks['Александра'] = {}
-    # цикл по предметам
+    student_grades[student] = {}
+    total_grade = []
+
     for class_ in classes:  # 1 итерация: class_ = 'Математика'
         marks = [random.randint(1, 5) for i in range(3)]  # генерируем список из 3х случайных оценок
         students_marks[student][class_] = marks  # students_marks['Александра']['Математика'] = [5, 5, 5]
+        student_grades[student][class_] = round(numpy.average(marks))
+        total_grade.append(round(numpy.average(marks)))
+    student_grades[student]["total"] = round(numpy.average(total_grade))
+print(student_grades)
+
+
 #выводим получившийся словарь с оценками:
-
-
 for student in students:
     print(f'''{student}
-            {students_marks[student]}''')
+            {students_marks[student]}
+            {student_grades[student]}''')
 
 print(students_marks)
-
-
-
 # Добавьте вывод информации по всем оценкам для определенного ученика.
-
-
-# Добавьте еще команды, которые, на ваш взгляд, могут быть полезны для этой задачи.
-
-
 
 while True:
     print('''
@@ -88,19 +84,15 @@ while True:
         # выводим словарь с оценками:
         # цикл по ученикам
         for student in students_marks.keys():
-
             print(student)
             # цикл по предметам
             for class_ in students_marks[student].keys():
-                student_grades[student] = students_marks[student][class_]
-                #####################################################
                 if class_ in students_marks[student].keys():
-                    print(f'\t{class_} - {students_marks[student][class_]} - {round(numpy.average(students_marks[student][class_]))}')
+                    print(f'\t{class_} - {students_marks[student][class_]} - {student_grades[student][class_]}')
                 else:
                     continue
+            print(f"\tОбщая оценка студента - {student_grades[student]['total']}")
             print()
-            print(f"\t\nОбщая оценка студента - {5}")
-            print(f"student_grades - {student_grades}")
 
     elif "4" in command:  # Добавить
         print('''
@@ -122,29 +114,35 @@ while True:
             students_marks[student][class_].append(mark)
             print(f'Для {student} по предмету {class_} добавлено оценка {mark}')
 
-
         elif "2" in command:
             print("Добавить данные по предметам")
             # считываем имя ученика
             student = input('Введите имя ученика:_')
-            # считываем название предмета
-            students_marks[student] = {}
-            for class_ in classes:
-                students_marks[student][class_] = [0 for i in range(3)]
-
-            print(f'Студент {student} добавлено')
+            class_ = input('Введите имя придмета:_')
+            if student in students_marks.keys():
+                student_grades[student] = {}
+                marks = [random.randint(1, 5) for i in range(3)]
+                students_marks[student][class_] = marks
+                student_grades[student][class_] = round(numpy.average(marks))
+                print(f'Придмет {class_} добавлено')
+            else:
+                print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
 
         elif "3" in command:
             print("Добавить ученика")
             # считываем имя ученика
             student = input('Введите имя ученика:_')
-            if student in students_marks.keys():
-                students_marks.pop(student)
-                print(f'Студент {student} удалено')
-            else:
-                print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
-
-
+            students_marks[student] = {}
+            student_grades[student] = {}
+            total_grade = []
+            # цикл по предметам
+            for class_ in classes:
+                marks = [random.randint(1, 5) for i in range(3)]
+                students_marks[student][class_] = marks
+                student_grades[student][class_] = round(numpy.average(marks))
+                total_grade.append(round(numpy.average(marks)))
+            student_grades[student]["total"] = round(numpy.average(total_grade))
+            print(f'Студент {student} добавлено')
 
     elif "5" in command:  # Удалять
         print('''
