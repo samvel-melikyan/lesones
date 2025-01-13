@@ -1,5 +1,9 @@
 import random
 
+import numpy
+
+from arrays import index
+
 # список учеников
 students = ['Аполлон', 'Ярослав', 'Александра', 'Дарья', 'Ангелина']
 # отсортируем список учеников
@@ -8,6 +12,7 @@ students.sort()
 classes = ['Математика', 'Русский язык', 'Информатика']
 # пустой словарь с оценками по каждому ученику и предмету
 students_marks = {}
+student_grades = {}
 # сгенерируем данные по оценкам:
 # цикл по ученикам
 for student in students:  # 1 итерация: student = 'Александра'
@@ -17,17 +22,18 @@ for student in students:  # 1 итерация: student = 'Александра'
         marks = [random.randint(1, 5) for i in range(3)]  # генерируем список из 3х случайных оценок
         students_marks[student][class_] = marks  # students_marks['Александра']['Математика'] = [5, 5, 5]
 #выводим получившийся словарь с оценками:
+
+
 for student in students:
     print(f'''{student}
             {students_marks[student]}''')
 
-
+print(students_marks)
 
 
 
 # Добавьте вывод информации по всем оценкам для определенного ученика.
 
-# Добавьте вывод среднего балла по каждому предмету по определенному ученику.
 
 # Добавьте еще команды, которые, на ваш взгляд, могут быть полезны для этой задачи.
 
@@ -39,9 +45,10 @@ while True:
             Добавить оценки ученика по предмету----------------------------- 1 
             Вывести средний балл по всем предметам по каждому ученику------- 2
             Вывести все оценки по всем ученикам----------------------------- 3
-            Выход из программы---------------------------------------------- 4
+            Добавлять------------------------------------------------------- 4
             Удалять--------------------------------------------------------- 5
             Редактировать--------------------------------------------------- 6
+            Выход из программы---------------------------------------------- 7
             ''')
     command = input('Введите номер команды:_')
     if "1" in command:
@@ -80,22 +87,64 @@ while True:
         print('3. Вывести все оценки по всем ученикам')
         # выводим словарь с оценками:
         # цикл по ученикам
-        for student in students:
-            if student in students_marks.keys():
-                print(student)
-                # цикл по предметам
-                for class_ in classes:
-                    if class_ in students_marks[student].keys():
-                        print(f'\t{class_} - {students_marks[student][class_]}')
-                    else:
-                        continue
-            else:
-                continue
-            print()
+        for student in students_marks.keys():
 
-    elif "4" in command:
-        print('4. Выход из программы')
-        break
+            print(student)
+            # цикл по предметам
+            for class_ in students_marks[student].keys():
+                student_grades[student] = students_marks[student][class_]
+                #####################################################
+                if class_ in students_marks[student].keys():
+                    print(f'\t{class_} - {students_marks[student][class_]} - {round(numpy.average(students_marks[student][class_]))}')
+                else:
+                    continue
+            print()
+            print(f"\t\nОбщая оценка студента - {5}")
+            print(f"student_grades - {student_grades}")
+
+    elif "4" in command:  # Добавить
+        print('''
+                    Список команд:
+                        Добавить данные по:
+                            Oценкам----------------------------- 1
+                            предметам--------------------------- 2
+                            ученикам---------------------------- 3 
+                    ''')
+        command = input('Введите номер команды:_')
+        if "1" in command:
+            print("Добавить данные по оценкам")
+            # считываем имя ученика
+            student = input('Введите имя ученика:_')
+            # считываем название предмета
+            class_ = input('Введите предмет:_')
+            # считываем оценку
+            mark = int(input('Введите оценку:_'))
+            students_marks[student][class_].append(mark)
+            print(f'Для {student} по предмету {class_} добавлено оценка {mark}')
+
+
+        elif "2" in command:
+            print("Добавить данные по предметам")
+            # считываем имя ученика
+            student = input('Введите имя ученика:_')
+            # считываем название предмета
+            students_marks[student] = {}
+            for class_ in classes:
+                students_marks[student][class_] = [0 for i in range(3)]
+
+            print(f'Студент {student} добавлено')
+
+        elif "3" in command:
+            print("Добавить ученика")
+            # считываем имя ученика
+            student = input('Введите имя ученика:_')
+            if student in students_marks.keys():
+                students_marks.pop(student)
+                print(f'Студент {student} удалено')
+            else:
+                print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
+
+
 
     elif "5" in command:  # Удалять
         print('''
@@ -115,7 +164,7 @@ while True:
             # считываем оценку
             mark = int(input('Введите оценку:_'))
             if mark in students_marks[student][class_]:
-                students_marks[student][class_].remove(mark)
+                students_marks[student][class_][students_marks[student][class_].index(mark)] = 0
                 print(f'Для {student} по предмету {class_} удалено оценка {mark}')
             else:
                 print('ОШИБКА: не правельное оценка или у студента нет ткаого оценка')
@@ -129,7 +178,6 @@ while True:
             class_ = input('Введите предмет:_')
             if student in students_marks.keys() and class_ in students_marks[student].keys():
                 students_marks[student].pop(class_)
-                print(students_marks[student])
                 print(f'Для {student} предмет {class_} удалено')
             else:
                 print('ОШИБКА: не правельный придмет или студент не проходить такой придмет')
@@ -163,7 +211,10 @@ while True:
             mark = int(input('Введите оценку:_'))
             new_mark = int(input('Введите новую оценку: '))
             if mark in students_marks[student][class_]:
-                students_marks[student][class_] = new_mark
+                for i in range(len(students_marks[student][class_])):
+                    if students_marks[student][class_][i] == mark:
+                        students_marks[student][class_][i] = new_mark
+                        break
                 print(f'Для {student} по предмету {class_} изменено оценка {mark} на {new_mark}')
             else:
                 print('ОШИБКА: не правельное оценка или у студента нет ткаого оценка')
@@ -177,10 +228,7 @@ while True:
             class_ = input('Введите предмет:_')
             new_class_ = input('Введите новый предмет:_ ')
             if class_ in students_marks[student].keys():
-                # ====================================================
-                # change
-
-                students_marks[student][new_class_] = students_marks[student][class_]
+                students_marks[student][new_class_] = students_marks[student].pop(class_)
                 print(f'Для {student} предмет {class_} изменено на {new_class_}')
             else:
                 print('ОШИБКА: не правельный придмет или студент не проходить такой придмет')
@@ -191,10 +239,13 @@ while True:
             student = input('Введите имя ученика:_')
             new_student = input('Введите имя нового ученика:_')
             if student in students:
-                students[student] = new_student
+                students_marks[new_student] = students_marks[student]
+                students.append(new_student)
                 print(f'Студент {student} изменень на {new_student}')
             else:
                 print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
 
-
+    elif "7" in command:
+        print('4. Выход из программы')
+        break
 
