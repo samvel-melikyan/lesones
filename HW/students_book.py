@@ -16,7 +16,6 @@ for student in students:  # 1 итерация: student = 'Александра'
     students_marks[student] = {}  # 1 итерация: students_marks['Александра'] = {}
     student_grades[student] = {}
     total_grade = []
-
     for class_ in classes:  # 1 итерация: class_ = 'Математика'
         marks = [random.randint(1, 5) for i in range(3)]  # генерируем список из 3х случайных оценок
         students_marks[student][class_] = marks  # students_marks['Александра']['Математика'] = [5, 5, 5]
@@ -44,17 +43,18 @@ while True:
             Добавлять------------------------------------------------------- 4
             Удалять--------------------------------------------------------- 5
             Редактировать--------------------------------------------------- 6
-            Выход из программы---------------------------------------------- 7
+            Вывести ученика------------------------------------------------- 7
+            Выход из программы---------------------------------------------- 8
             ''')
     command = input('Введите номер команды:_')
     if "1" in command:
         print('1. Добавить оценку ученика по предмету')
         # считываем имя ученика
-        student = input('Введите имя ученика: ')
+        student = input('Введите имя ученика:_')
         # считываем название предмета
-        class_ = input('Введите предмет: ')
+        class_ = input('Введите предмет:_')
         # считываем оценку
-        mark = int(input('Введите оценку: '))
+        mark = int(input('Введите оценку:_'))
         # если данные введены верно
         if student in students_marks.keys() and class_ in students_marks[student].keys():
             # добавляем новую оценку для ученика по предмету
@@ -81,16 +81,23 @@ while True:
 
     elif "3" in command:
         print('3. Вывести все оценки по всем ученикам')
-        # выводим словарь с оценками:
-        # цикл по ученикам
+        total_grades = []
         for student in students_marks.keys():
             print(student)
-            # цикл по предметам
             for class_ in students_marks[student].keys():
+                for grade_mark in student_grades[student].keys():
+                    if grade_mark == "total":
+                        continue
+                    else:
+                        total_grades.append(student_grades[student][class_])
+                        student_grades[student]['total'] = round(numpy.average(total_grades))
+
                 if class_ in students_marks[student].keys():
+                    student_grades[student][class_] = round(numpy.average(students_marks[student][class_]))
                     print(f'\t{class_} - {students_marks[student][class_]} - {student_grades[student][class_]}')
                 else:
                     continue
+
             print(f"\tОбщая оценка студента - {student_grades[student]['total']}")
             print()
 
@@ -120,10 +127,9 @@ while True:
             student = input('Введите имя ученика:_')
             class_ = input('Введите имя придмета:_')
             if student in students_marks.keys():
-                student_grades[student] = {}
                 marks = [random.randint(1, 5) for i in range(3)]
                 students_marks[student][class_] = marks
-                student_grades[student][class_] = round(numpy.average(marks))
+                student_grades[student][class_] = round(numpy.average(students_marks[student][class_]))
                 print(f'Придмет {class_} добавлено')
             else:
                 print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
@@ -244,6 +250,27 @@ while True:
                 print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
 
     elif "7" in command:
-        print('4. Выход из программы')
+        student = input('Введите имя ученика:_')
+        total_grades = []
+        if student in students_marks.keys():
+            print(student)
+            for class_ in students_marks[student].keys():
+                for grade_mark in student_grades[student].keys():
+                    if grade_mark == "total":
+                        continue
+                    else:
+                        total_grades.append(student_grades[student][class_])
+                        student_grades[student]['total'] = round(numpy.average(total_grades))
+
+                if class_ in students_marks[student].keys():
+                    student_grades[student][class_] = round(numpy.average(students_marks[student][class_]))
+                    print(f'\t{class_} - {students_marks[student][class_]} - {student_grades[student][class_]}')
+            print(f"\tОбщая оценка студента - {student_grades[student]['total']}")
+            print()
+        else:
+            print('ОШИБКА: не правельный ввод имени студента или студент не регистрирован')
+
+    elif "8" in command:
+        print('8. Выход из программы')
         break
 
