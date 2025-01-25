@@ -28,28 +28,25 @@ new_line("N-2")
 
 
 
-def sales_stats(list, revenue=False, quantity=False, *args):
-    products = []
-    products_quantity = 0
-    products_revenue = 0
-    for i,k in zip(list, products):
-        k = {"name": i[0],
-             "quantity": i[1],
-             "price": i[2]
-             }
-        products_quantity += k["quantity"]
-        products_revenue += k["revenue"]
-    print(products_revenue)
-    if revenue == True:
-        return products_revenue
-    elif quantity == True:
-        data = {products[i] for i in products}
-        return (args, {products})
+def sales_stats(list, **kwargs):
+    total_revenue = None
+    product_quantities = None
+    if kwargs.get("revenue") and kwargs.get("quantity"):
+        total_revenue = sum(item[1] * item[2] for item in list)
+    elif kwargs.get("quantity"):
+        product_quantities = {}
+        for item in list:
+            product_name, quantity, _ = item
+            if product_name in product_quantities:
+                product_quantities[product_name] += quantity
+            else:
+                product_quantities[product_name] = quantity
+        if kwargs
 
-    else:
-        print(f"""Products : {[products["name"] for key in products.keys() if key in products]}
-Quantity : {products_quantity}
-Revenue : {products_revenue}""")
+
+
+        print(product_quantities)
+    return total_revenue, product_quantities
 
 
 
