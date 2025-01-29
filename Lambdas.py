@@ -42,6 +42,7 @@ sorted_people = sorted(people, key=get_age) # sort by keys that will be iterated
 print(sorted_people)
 print("\n> классические функции предполагают выполнение больших наборов инструкций, "
       "причём многократно, а здесь — всего лишь получение значения по ключу для единичного словаря.")
+# lambda with sorted
 sorted_people = sorted(people, key=lambda person: person['age']) # key= here is a logic of get_age function, but as argument to sorted() function -> in lambda function
 print(sorted_people)
 short_line()
