@@ -1,8 +1,4 @@
-from tkinter.font import names
-
-import Lambdas
-from functions import new_line, short_line, new_section
-from strings import index
+from functions.functions import new_line, short_line
 
 new_line("N-1")
 def customer_support_simulator(questions):

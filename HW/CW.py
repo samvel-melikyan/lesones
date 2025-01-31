@@ -1,6 +1,4 @@
-from lib2to3.pgen2.token import NUMBER
-
-from functions import *
+from functions.functions import *
 
 
 def is_valid_password(password, min_length=8, require_upper=True, require_lower=True, require_digit=True):
