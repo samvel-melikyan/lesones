@@ -13,7 +13,7 @@ def new_line(header=""):
         print(f"----------------------- {header} -----------------------------------")
 def short_line():
     print("\t  -------------------")
-print()
+
 print("- using only name without the call of function, so by this way we may call the function in another variable by using function call sign - () ")
 print("another_print = print")
 print("another_print('Выводим на экран при помощи переменной another_print!')")
