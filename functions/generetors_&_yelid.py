@@ -146,3 +146,34 @@ user_data_generator = generate_user_data1(5, first_names, last_names, [18, 60])
 for user in user_data_generator:
    print(user)
 short_line()
+new_line("CW4")
+
+def primes(num):
+    for i in range(2, num + 1):
+        if i == 2 or i == 3:
+            yield i
+        elif i % 2 == 0 or i % 3 == 0:
+            continue
+        else:
+            for j in range(5, num +1, 2):
+                if i != j and i % j == 0:
+                    continue
+                else:
+                    yield i
+                    break
+print(list(primes(10)))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
