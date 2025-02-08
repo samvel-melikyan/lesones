@@ -387,6 +387,39 @@ decorator = retry_on_failure(max_retries=5)
 fragile_function = decorator(fragile_function)""")
 
 
+new_line()
+
+import warnings
+
+warnings.filterwarnings('ignore')
+
+
+def retry_if_result_is_none(times=1):
+    def decorator(func):
+        def inner(*args, **kwargs):
+            for i in range(times):
+                if not None in args:
+                    return args
+                elif None in args:
+                    continue
+            return f"Получилось получить значение за {times} вызова"
+        return inner
+    return decorator
+
+import random
+
+random.seed(47)
+
+
+@retry_if_result_is_none(times=2)
+def test_function():
+    return random.choice([None, "Passed"])
+
+
+to_test = test_function()
+
+print(to_test)
+
 
 
 
