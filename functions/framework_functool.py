@@ -102,13 +102,20 @@ test_get(endpoint="/api/v1/orders", params={})
 # Test started for /api/v1/users...
 # Test started for /api/v1/orders...
 
+print("""
+When we have a function with two arguments, but we have specific value for 
+one argument, we can use partial function, specify function and as 2nd argument 
+specify the argument we want to be same for a wile, and then use this variable which 
+contains the modified function, and use it with one argument that can be changeed. 
+""")
+
 
 new_line("reduce")
 
 
 print("functools.reduce(function, initializer)")
 print("""Первый аргумент функции, function — это бинарная функция, которая принимает два аргумента, 
-итерируемый аргумент — это последовательность (например, список или кортеж) элементов для сокращения, 
+этитерируемый аргумент — о последовательность (например, список или кортеж) элементов для сокращения, 
 а необязательный аргумент инициализатора initializer — это значение, которое используется в качестве первого аргумента при первом вызове функции
 
 Одним из практических сценариев для QA-инженера, где пригодится reduce, 
@@ -118,24 +125,139 @@ print("""Первый аргумент функции, function — это би�
 Вот как мы могли бы сделать это без reduce:
 
 test_results = [True, True, False, True, True]
-
 all_passed = True
 for result in test_results:
     all_passed = all_passed and result
-
 print(all_passed)
 # False
 
 Теперь давайте посмотрим, как мы можем использовать функцию reduce, чтобы сделать то же самое более лаконично:
 
 from functools import reduce
-
 test_results = [True, True, False, True, True]
-
 all_passed = reduce(lambda a, b: a and b, test_results)
-
 print(all_passed)
-# False""")
+# False
+
+
+При этом вы справедливо могли вспомнить о функции all, которая еще сильнее упростит данную операцию:
+test_results = [True, True, False, True, True]
+all_passed = all(test_results)
+print(all_passed) 
+# False
+--------------------
+К выбору инструмента нужно подходить осознанно, разумеется, в контексте этого 
+примера лучшим (в контексте читаемости и простоты) решением будет all, а функцию reduce в 
+реальном мире стоит приберечь для более сложных примеров.
+
+Так, например, если у нас есть список тестовых случаев следующего вида:
+--------------""")
+test_cases = [
+    {'name': 'Test 1', 'passed': True, 'time': 1.0},
+    {'name': 'Test 2', 'passed': False, 'time': 0.5},
+    {'name': 'Test 3', 'passed': True, 'time': 1.5}
+]
+from functools import reduce
+
+summary = reduce(
+    lambda acc, test: {
+        'total_time': acc['total_time'] + test['time'],
+        'passed': acc['passed'] + (1 if test['passed'] else 0),
+        'failed': acc['failed'] + (0 if test['passed'] else 1),
+    },
+    test_cases,
+    {'total_time': 0.0, 'passed': 0, 'failed': 0}
+)
+
+print(summary)
+# {'total_time': 3.0, 'passed': 2, 'failed': 1}
+
+print("""Теперь благодаря декоратору lru_cache ваши функции станут работать еще быстрее, 
+partial поможет вам гибко подстраиваться под существующие реализации, а 
+reduce стал новым и мощным способом обработки и анализа данных.""")
+
+short_line("Task N1 --- lru_cache")
+"""Optimize the function's work"""
+
+@lru_cache()
+def calculate_factorial(n):
+    """Функция вычисляет факториал числа n."""
+    if n == 0:
+        return 1
+    else:
+        return n * calculate_factorial(n - 1)
+
+@lru_cache()
+def fibonacci(n):
+    """Функция вычисляет число Фибоначчи для n."""
+    if n <= 1:
+        return n
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+@lru_cache()
+def calculate_power(base, exponent):
+    """Функция вычисляет значение степени числа base в степени exponent."""
+    return base ** exponent
+
+short_line("Task N2 --- partial()")
+
+
+
+def form_request(url, method='GET', headers=None, data=None, params=None):
+    dict_ = {"headers": headers,
+           "data": data,
+           "params": params}
+    return f"{url}-::-{method}-::-{dict_}"
+
+
+form_post_request = partial(form_request, method='POST')
+
+print(form_post_request('dummy_api'))
+# dummy_api-::-POST-::-{'headers': None, 'data': None, 'params': None}
+
+
+short_line("Task N3 --- reduce")
+
+cart = [
+    {'product_name': 'Мышка', 'price': 15.99},
+    {'product_name': 'Клавиатура', 'price': 25.50},
+    {'product_name': 'Наушники', 'price': 10.75}
+]
+
+def calculate_total_price(dict_list):
+    return reduce(lambda x, y: x + y['price']  , dict_list, 0)
+
+
+total_price = calculate_total_price(cart)
+print(f"Общая стоимость товаров в корзине: ${total_price:.2f}")
+
+print("""
+reduce(function, iterable, initializer) is used to accumulate the total price.
+function (lambda x, y: x + y['price']):
+x: The accumulated total (starting at 0, because of the initializer).
+y: Each dictionary (product) in cart.
+y['price']: Extracts the price from the dictionary.
+x + y['price']: Adds the price to the running total.""")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
