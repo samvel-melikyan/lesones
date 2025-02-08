@@ -11,8 +11,8 @@ def new_line(header=""):
     else:
         print()
         print(f"----------------------- {header} -----------------------------------")
-def short_line():
-    print("\t  -------------------")
+def short_line(section=''):
+    print("\t  -------------------  {}".format(section))
 
 print("- using only name without the call of function, so by this way we may call the function in another variable by using function call sign - () ")
 print("another_print = print")
