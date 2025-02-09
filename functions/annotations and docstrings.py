@@ -117,6 +117,88 @@ from typing import Iterable
 def get_first_element(items: Iterable[int]) -> int:
     return next(iter(items))""")
 
+from typing import Iterable
+
+def process_data(data: Iterable[tuple[int, str]]) -> None:
+    for number, name in data:
+        print(f"Processing {name} with ID {number}")
+
+
+
+new_section("Docstring")
+
+print("""def is_valid_email(email):
+    '''Check if an email is valid.'''
+    
+    При этом docstrings могут быть многострочными. 
+    Обычно первая строка — это краткое описание того, что делает функция. 
+    Затем следует пустая строка, а затем более подробное описание:
+    
+    example:    
+    '''Check if an email is valid.
+
+    This function takes a string representing an email address, and checks
+    if it is formed correctly. An email is considered valid if it contains
+    exactly one '@' symbol, and the domain part contains exactly one dot ('.').
+    '''
+И, наконец, заключительный и лучший вариант — это добавить в docstring еще более подробное описание параметров:
+    '''
+    Check if an email is valid.
+
+    This function takes a string representing an email address, and checks
+    if it is formed correctly. An email is considered valid if it contains
+    exactly one '@' symbol, and the domain part contains exactly one dot ('.').
+
+    :param email: The email address to check.
+    :return: True if the email is valid, False otherwise.
+    '''
+
+""")
+
+short_line("help() function")
+print("Просматривать документационные строки мы можем прямо в коде "
+      "(или же в Python Console, что более реалистичный вариант) при помощи функции help():")
+print("help(is_valid_email)")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

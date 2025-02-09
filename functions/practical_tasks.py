@@ -1,0 +1,82 @@
+from datetime import datetime
+from typing import List, Dict, Any
+
+print("----  Task N1   ----")
+
+
+def calculate_age(birth_date: str) -> int:
+    """
+    Calculates the age of a user based on their birth date.
+
+    The function extracts the birth year, day, and month from the given birth date
+    (formatted as "year-day-month") and compares it with the current date to
+    determine the user's age.
+
+    Age is calculated as the difference between the current year and birth year,
+    with adjustments based on whether the birth month and day have passed in the
+    current year.
+
+    Example:
+        calculate_age("2000-08-02") -> 24 (if the current date is after August 2, 2024)
+
+    :param birth_date: The birth date in the format "YYYY-DD-MM".
+    :return: The user's age as an integer.
+    """
+    b_year, b_day, b_month = map(int, birth_date.split('-'))
+    year, day, month = map(int, datetime.now().strftime("%Y-%d-%m").split('-'))
+    if b_month < month:
+        return int(year) - int(b_year)
+    elif b_month > month:
+        return int(year) - int(b_year) - 1
+    elif b_month == month:
+        if b_day == day or b_day < day:
+            return int(year) - int(b_year)
+        elif b_day > day:
+            return int(year) - int(b_year) - 1
+
+
+
+def filter_adults(users: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    This function filters and returns in the list only adult users.
+    Using filter function and converting it into a list.
+    Lambda function in the filter function checks a condition, that if a user's age is greater then or equal to 18,
+    to get the age of user used function calculate_age().
+
+    :param users: is a list with the user data that every element is a dictionary with the key : value -
+    {'first_name': str, 'last_name': str, 'birth_date': str (in format - yyyy-dd-mm)}
+    :return: a list only with user datas that are adults
+    """
+    return list(filter(lambda x: calculate_age(x['birth_date']) > 18, users))
+
+
+def generate_username(first_name: str, last_name: str) -> str:
+    """
+    Generates a username based on the user's first and last name.
+
+    The username is created using the first letter of the first name (in lowercase),
+    followed by a dot (.), and then the entire last name in lowercase.
+
+    Example:
+        generate_username("John", "Doe") -> "j.doe"
+
+    :param first_name: The first name of the user.
+    :param last_name: The last name of the user.
+    :return: A formatted username in the pattern "{first_initial}.{last_name}".
+    """
+    return f"{first_name[:1].lower()}.{last_name.lower()}"
+
+
+# print(calculate_age("1990-05-15"))
+# # 33
+# users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15'},
+#               {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22'},
+#               {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01'}]
+#
+# print(filter_adults(users_data))
+# print(generate_username("John", "Doe"))
+users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '2020-05-15'},
+              {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22'},
+              {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01'}]
+to_test = [calculate_age("1945-06-06"), filter_adults(users_data), generate_username("Lev", "Sergeev")]
+print(to_test)
