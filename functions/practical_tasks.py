@@ -1,6 +1,8 @@
 from datetime import datetime
 from typing import List, Dict, Any
 
+from Lambdas import new_line, result
+
 print("----  Task N1   ----")
 
 
@@ -79,4 +81,110 @@ users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '2020-05-
               {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22'},
               {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01'}]
 to_test = [calculate_age("1945-06-06"), filter_adults(users_data), generate_username("Lev", "Sergeev")]
-print(to_test)
+# print(to_test)
+
+new_line()
+from datetime import date
+from typing import List, Dict, Any
+
+def calculate_age(birth_date: str) -> int:
+    birth_date = date.fromisoformat(birth_date)
+    print(birth_date)
+    today = date.today()
+    print(today)
+    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
+    return age
+
+def filter_adults(users: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    adults = [user for user in users if calculate_age(user['birth_date']) >= 18]
+    return adults
+
+def generate_username(first_name: str, last_name: str) -> str:
+    username = f"{first_name[0].lower()}.{last_name.lower()}"
+    return username
+
+# print(calculate_age("2001-22-04"))
+
+
+print("----  Task N2   ----")
+
+def convert_to_full_name(users: List[Dict[str, Any]]) -> List[str]:
+    return list(map(lambda x: f"{x['first_name']} {x['last_name']}", users))
+
+def find_matching_emails(users1: List[Dict[str, Any]], users2: List[Dict[str, Any]]) -> set:
+    result =  {x['email'] for x in users1 if any(x['email'] == y['email'] for y in users2)}
+    return result
+
+def combine_user_data(users: List[Dict[str, Any]]) -> Dict[str, List[Any]]:
+    result = dict()
+    for i in users[0].keys():
+        result[i] = tuple(map(lambda x: x[i] ,users))
+    return result
+
+users_data = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15', 'email': 'johndoe@gmail.com'},
+             {'first_name': 'Bob', 'last_name': 'Johnson', 'birth_date': '1985-10-22', 'email': 'bobJ@gmail.com'},
+             {'first_name': 'Lev', 'last_name': 'Sergeev', 'birth_date': '2015-01-01', 'email': 'lev46@gmail.com'}]
+
+users_data_ext = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990-05-15', 'email': 'johndoe@gmail.com'}]
+
+# print(convert_to_full_name(users_data))
+# ['John Doe', 'Bob Johnson', 'Lev Sergeev']
+# print(find_matching_emails(users_data, users_data_ext))
+# {'johndoe@gmail.com'}
+# print(combine_user_data(users_data))
+# {'first_name': ('John', 'Bob', 'Lev'), 'last_name': ('Doe', 'Johnson', 'Sergeev'), 'birth_date': ('1990-05-15', '1985-10-22', '2015-01-01'), 'email': ('johndoe@gmail.com', 'bobJ@gmail.com', 'lev46@gmail.com')}
+
+print("----  Task N3   ----")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
