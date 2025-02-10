@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import List, Dict, Any
 
-from Lambdas import new_line, result
+from lesones.functions.functions import new_line
 
 print("----  Task N1   ----")
 
@@ -133,42 +133,103 @@ users_data_ext = [{'first_name': 'John', 'last_name': 'Doe', 'birth_date': '1990
 # {'johndoe@gmail.com'}
 # print(combine_user_data(users_data))
 # {'first_name': ('John', 'Bob', 'Lev'), 'last_name': ('Doe', 'Johnson', 'Sergeev'), 'birth_date': ('1990-05-15', '1985-10-22', '2015-01-01'), 'email': ('johndoe@gmail.com', 'bobJ@gmail.com', 'lev46@gmail.com')}
+from typing import List, Dict, Any
+from functools import reduce
+
+def convert_to_full_name(users: List[Dict[str, Any]]) -> List[str]:
+    full_names = list(map(lambda user: f"{user['first_name']} {user['last_name']}", users))
+    return full_names
+
+def find_matching_emails(users1: List[Dict[str, Any]], users2: List[Dict[str, Any]]) -> set:
+    emails1 = set(map(lambda user: user['email'], users1))
+    emails2 = set(map(lambda user: user['email'], users2))
+    matching_emails = emails1.intersection(emails2)
+    return matching_emails
+
+def combine_user_data(users: List[Dict[str, Any]]) -> Dict[str, List[Any]]:
+    keys = users[0].keys()
+    combined_data = dict(zip(keys, zip(*[user.values() for user in users])))
+    return combined_data
 
 print("----  Task N3   ----")
 
+import time
+from typing import Callable
+
+def time_it(func: Callable):
+    def inner(*args, **kwargs):
+        start_time = time.time()
+        func(*args, **kwargs)
+        duration = int(round(time.time() - start_time, 1))
+        print(f"Execution time of '{func.__name__}': {duration} seconds")
+        return duration
+    return inner
+
+print("----  Task N4   ----")
+import warnings
+
+warnings.filterwarnings('ignore')
+from typing import List
+
+
+def log_filter(logs: str, log_level: str):
+    logs_list = logs.split('\n')
+    return [x for x in logs_list if log_level in x ]
+
+def log_filter(logs_string, log_level):
+   for line in logs_string.split('\n'):
+       if line and log_level in line:
+           yield line.strip()
+# used yield unlike me
+logs = "2023-08-15 14:15:24 INFO Starting the system.\n2023-08-15 14:15:26 WARN System load is above 80%.\n2023-08-15 14:15:27 ERROR Failed to connect to database.\n2023-08-15 14:15:28 INFO Connection retry in 5 seconds.\n"
+to_test = list(log_filter(logs, log_level="ERROR"))
+
+print(to_test)
+
+
+print("----  Task N5   ----")
+
+categories = {
+   "Электроника": {
+       "Телефоны": {
+           "Смартфоны": {},
+           "Проводные": {}
+       },
+       "Компьютеры": {
+           "Ноутбуки": {},
+           "Стационарные": {
+               "Игровые": {},
+               "Для работы": {}
+           }
+       }
+   },
+   "Одежда": {
+       "Мужская": {
+           "Джинсы": {},
+           "Куртки": {}
+       }
+   }
+}
+
+
+def category_dict(dict_names: Dict, parent_path: str) -> List:
+    if dict_names.value < 0:
+        return False
+    # Рекурсия
+    for child in dict_names.children:
+        if not category_dict(child):
+            return False
+    return True
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def extract_categories(category_dict, parent_path=''):
+   paths = []
+   for category, subcategories in category_dict.items():
+       current_path = f"{parent_path} > {category}" if parent_path else category
+       paths.append(current_path)
+       paths.extend(extract_categories(subcategories, current_path))
+   return paths
 
 
 
