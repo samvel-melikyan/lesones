@@ -1,7 +1,7 @@
 from functions import *
 
 new_section("Functools")
-new_line("lru_cache")
+line("lru_cache")
 import time
 
 def is_valid_email_without_lru_cash(email):
@@ -84,7 +84,7 @@ print("""По умолчанию (когда мы не передаем деко
 И подводя итоги: декоратор lru_cache может быть крайне полезен при тестировании сценариев, когда одну и ту же функцию 
 нужно вызывать несколько раз с одними и теми же аргументами. Кэшируя результаты вызовов этих функций, мы можем значительно ускорить наши тесты.""")
 
-new_line("patrial")
+line("patrial")
 
 from functools import partial
 def test_api(endpoint, method, params):
@@ -110,7 +110,7 @@ contains the modified function, and use it with one argument that can be changee
 """)
 
 
-new_line("reduce")
+line("reduce")
 
 
 print("functools.reduce(function, initializer)")

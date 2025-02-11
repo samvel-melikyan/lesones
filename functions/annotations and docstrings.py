@@ -79,7 +79,7 @@ from typing import Dict
 def count_letters(word_list: Dict[str, int]) -> Dict[str, int]:
 """)
 
-new_line("Vector")
+line("Vector")
 print("""
 Vector = list[float]
 vector1 = [1.0, 2.0, 1.0, 3.0]
@@ -90,7 +90,7 @@ vector1 = [1.0, 2.0, 1.0, 3.0]
 def reflect(vector: Vector) -> Vector:
     return [ -num for num in vector]""")
 
-new_line("Callable")
+line("Callable")
 print("""
 from typing import Callable
 
@@ -106,7 +106,7 @@ def apply_function(f: Callable[[int], str], x: int) -> str:
 
 
 
-new_line("iterable")
+line("iterable")
 print("""Если наш объект итерируемый (например список или кортеж), то мы можем это также указать в аннотации. Это, очевидно, 
 необходимо делать в случае, если по этому объекту в теле функции будут проходиться циклом.
 

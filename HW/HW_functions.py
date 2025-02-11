@@ -1,6 +1,6 @@
-from functions.functions import new_line, short_line
+from functions.functions import line, short_line
 
-new_line("N-1")
+line("N-1")
 def customer_support_simulator(questions):
     result = []
     for i in questions:
@@ -20,7 +20,7 @@ for i, answer in enumerate(answers):
    print(f'Question №{i + 1}: {questions[i]}')
    print(f'Answer: {answer}')
 
-new_line("N-2")
+line("N-2")
 
 def combin_data(list):
     producs = {}
@@ -55,7 +55,7 @@ def sales_stats(list, **kwargs):
 
     return total_revenue, product_quantities
 
-new_line("N-3")
+line("N-3")
 
 def create_report(list, funk, **kwargs):
     result = f"Средний доход за данный период составил {funk(list, revenue=True)[0] / len(list)}.\nКоличество проданных единиц каждого товара:"
@@ -63,7 +63,7 @@ def create_report(list, funk, **kwargs):
         result += f"\n{i}: {j}"
     return result
 
-new_line()
+line()
 sales_data = [["яблоки", 10, 20], ["груши", 5, 30], ["яблоки", 7, 20]]
 # print(combin_data(sales_data))
 print(sales_stats(sales_data, revenue=True))
@@ -92,7 +92,7 @@ print(create_report(sales_data, sales_stats))
 #    for item, qty in quantity.items():
 #        report += f"{item}: {qty}\n"
 #    return report
-new_line("N-4")
+line("N-4")
 
 def sort_users_by_activity(users):
     return sorted(users,  key=lambda user: users[user], reverse=True)

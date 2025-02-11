@@ -1,4 +1,4 @@
-from functions import new_section, new_line, short_line
+from functions import new_section, line, short_line
 
 new_section("Recursion")
 def recursive_func(n=0):
@@ -25,7 +25,7 @@ print("""
                                                                             recursive_function(4)            
 
 """)
-new_line("Заполнение и освобождение стека функций")
+line("Заполнение и освобождение стека функций")
 def recursive_func(n=0):
    print('Вывод до запуска рекурсии: ', n)
    if n < 3:
@@ -59,7 +59,7 @@ print("""
         recursive_functino(0)
 """)
 
-new_line("Factorial")
+line("Factorial")
 
 def factorial(n):
     if n == 0:
@@ -132,7 +132,7 @@ print("""* Тестирование иерархических структур.
 надежность тестируемой системы.""")
 
 
-new_line("CW 1")
+line("CW 1")
 
 def fibonacci(n):
     if n <= 0:
@@ -162,7 +162,7 @@ def fibonacci_backward(n):
 number = fibonacci(15)
 print(f"Fibonacci of {fibonacci_backward(number)} is ", number)
 
-new_line("CW 2")
+line("CW 2")
 
 def binary_search(list, number):
     if len(list) == 0:
@@ -192,7 +192,7 @@ def binary_search(list, number):
 
 print(binary_search([1, 2, 3, 4, 5], 4))
 
-new_line("CW 3")
+line("CW 3")
 
 # def is_palindrome(s):
 #     str = s.reverse()

@@ -26,7 +26,7 @@ changed_function = decorator(demo_func)
 # TypeError: 'NoneType' object is not callable
 
 
-new_line()
+line()
 print("> Здесь мы и приходим к тому, что для реализации такого функционала понадобится принцип замыкания.")
 
 def decorator(func):
@@ -48,7 +48,7 @@ changed_function()
 # Работает целевая функция
 # Делаем что-то после вызова функции -- изменяем её поведение
 
-new_line("giving parameter to decorator function")
+line("giving parameter to decorator function")
 def decorator(func):
     def wrapper(parameter):
         print("Делаем что-то перед вызовом функции -- изменяем её поведение")
@@ -95,7 +95,7 @@ changed_function('Параметр декорированной функции_1
 # Параметр декорированной функции_2
 # Делаем что-то после вызова функции -- изменяем её поведение
 
-new_line("None return type")
+line("None return type")
 
 print("""Если для текущей реализации мы попробуем получить возвращаемое значение, то ожидаемо получим 
 None (помним, что если в функции не определён оператор return, то она по умолчанию возвращает None:""")
@@ -131,7 +131,7 @@ print(result)
 # Делаем что-то после вызова функции -- изменяем её поведение
 # Возвращаемое значение оригинальной функции + Изменяем возвращаемое значение в wrapper
 
-new_line("Prototype for Decorators")
+line("Prototype for Decorators")
 print("""def decorator(func):
     def wrapper(*args, **kwargs):
         res = func(*args, **kwargs)
@@ -187,7 +187,7 @@ demo_func()
 # Отработала оригинальная функция
 
 
-new_line("function work time")
+line("function work time")
 
 print("""def large_sum(n):
     return sum(range(n))
@@ -279,7 +279,7 @@ def prime_numbers(n):
 for i in range(1, 10000, 2000):
     prime_numbers(i)
 
-new_line("real case for QA engineer")
+line("real case for QA engineer")
 
 def retry_on_failure(func):
     max_retries = 3
@@ -311,7 +311,7 @@ print(fragile_function())
 
 print(fragile_function())
 
-new_line("Передача аргументов декораторам")
+line("Передача аргументов декораторам")
 
 
 def retry_on_failure(max_retries=3):
@@ -353,7 +353,7 @@ print("""
     вложенная функция принимает целевую функцию, 
     вложенная во вложенную функцию принимает аргументы для целевой функци.
 """)
-new_line("without @ operator")
+line("without @ operator")
 def retry_on_failure(max_retries=3):
     def decorator(func):
         def wrapper(*args, **kwargs):
@@ -387,7 +387,7 @@ decorator = retry_on_failure(max_retries=5)
 fragile_function = decorator(fragile_function)""")
 
 
-new_line()
+line()
 
 import warnings
 

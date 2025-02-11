@@ -4,7 +4,7 @@ greet("piter")
 def new_section(section_name):
     print()
     print(f"=============================== {section_name} =====================================")
-def new_line(header=""):
+def line(header=""):
     if header == "":
         print("-------------------------------------------------------------")
         print()
@@ -31,13 +31,13 @@ print("""\t
         "Функциональное программирование. - Программа, которая содержит функции, но всё ещё является процедурным кодом. Однако такой код более компактный, поскольку вся функциональность вынесена за скобки — в функции.
         "Объектно-ориентированное программирование. - Программа строится на основе классов и объектов. С этим типом программирования мы познакомим вас на заключительных этапах.
 """)
-new_line()
+line()
 # count_elements() # Вызов до объявления - здесь и получим ошибку
 def count_elements(): # Объявление функции
    print('Функция, которая будет считать количество элементов') # Тело функции
 count_elements() # Вызов после объявления
 # NameError: name 'count_elements' is not defined
-new_line()
+line()
 print("Определение того, что ожидает получить функция, называется параметром. А то, что мы передаём функции при её вызове, называется аргументом.")
 print("""def count_elements(input_list): # <- параметр
    print('Считаю элементы в {}'.format(input_list))
@@ -71,7 +71,7 @@ result = count_elements(list1)
 print(result)""")
 # {1: 4, 2: 3, 3: 5}
 print("this will return the value from the first return operator")
-new_line()
+line()
 print()
 def count_elements(input_list):
   dict1 = {}
@@ -96,17 +96,17 @@ list1 = [1, 2, 3, 2, 1, 1, 1, 2, 3, 3, 3, 3]
 result = count_elements(list1)
 print(result)""")
 print("this will return a tuple with two values")
-new_line()
+line()
 print("При этом, если функция возвращает кортеж из нескольких объектов, то мы можем сразу же их распаковать в разные переменные следующим образом:")
 print("""list1_count_dict, list1_unique_values  = count_elements(list1)
 print(list1_count_dict)
 print(list1_unique_values)""")
 print("Если мы используем такую конструкцию, то должны знать, сколько переменных возвращает функция, иначе можно наткнуться на ошибку:")
-new_line()
+line()
 print("""def count_elements(input_list):
    if type(input_list) not in (list, tuple, str): # not in tuple
        return "Недопустимый тип переданного аргумента" """)
-new_line()
+line()
 new_section("Arguments and Parameters")
 print("""def show_card(name, age, sex):
    print("Name: {}\nAge: {}\nSex: {}".format(name, age, sex))
@@ -120,7 +120,7 @@ show_card('Lev', sex='Male', age=22)
 # this will cause an error; positional argument is given at the end
 show_card(name='Lev', age=22, 'Male') # <- это аргументы
 # SyntaxError: positional argument follows keyword argument""")
-new_line("default argument")
+line("default argument")
 print("""def power(base, exponent=2):  # "exponent" - параметр со значением по умолчанию
    return base ** exponent
 print(power(10))  # "10" - позиционный аргумент, "exponent" будет равен 2""")
@@ -140,7 +140,7 @@ print(l2)
 # [2]""")
 
 new_section("*args & **kwargs")
-new_line("*args")
+line("*args")
 print("""\tNew way of calling same function multiple time \n\ttest_calculate_discount((100, 10, 90), (200, 20, 160), (300, 50, 150), (405, 0, 400))""")
 print("""def my_func(*args):
    print(args)
@@ -152,7 +152,7 @@ print("""def func(*params):
    for param in params:
        print(param)
 func(1, 2, 3)""")
-new_line()
+line()
 print("""def my_func(a, *args):
    print(a)
    print(args)
@@ -182,7 +182,7 @@ def test_calculate_discount(*test_data):
            print(f"Test failed for price={price}, discount={discount}, expected {expected_result}, got {result}")
 #	И использовать её мы можем следующим образом:
 test_calculate_discount((100, 10, 90), (200, 20, 160), (300, 50, 150), (405, 0, 400))
-new_line("**kwargs")
+line("**kwargs")
 print("> Для принятия произвольного количества именованных аргументов используется оператор **, а в качестве имени параметра, в который осуществляется упаковка, выбирают kwargs.")
 print("""def my_func(**kwargs):
    print(type(kwargs))
@@ -229,7 +229,7 @@ func(1, 2, 3, 4, 5, 6, e=7, f=8, g=9, h=10)
 - **kwargs собирает все дополнительные ключевые аргументы в словарь. В данном случае kwargs будет равен {'g': 9, 'h': 10}.
 
 > Таким образом вы можете передавать в функцию разные типы аргументов, и каждый из них будет обработан соответствующим образом.""")
-new_line("operator /")
+line("operator /")
 print("Оператор / в определении функции указывает, что все параметры перед ним должны быть переданы исключительно позиционно. "
       "\nЭто означает, что эти параметры не могут быть переданы по имени как ключевые аргументы.")
 print("""def func(a, b, /, c, d, *, e, f):
@@ -240,7 +240,7 @@ print("""def func(a, b, /, c, d, *, e, f):
     e и f могут быть переданы только по ключу.
     
     func(1, 2, 3, d=4, e=5, f=6)""")
-new_line()
+line()
 print("""list1, *list2 = [1, 2, 3, 4, 5]
 print(list1)
 # 1

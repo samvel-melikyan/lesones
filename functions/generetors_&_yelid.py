@@ -1,4 +1,4 @@
-from functions import new_section, new_line, short_line
+from functions import new_section, line, short_line
 new_section("Generator & operator yield")
 "generator example"
 x = [n**2 for n in range(1, 5)]
@@ -6,7 +6,7 @@ print(x)
 print("(<операция> for <переменная> in <итерируемый объект>)")
 x = (n**2 for n in range(1, 5))
 print(x)
-new_line("function next()")
+line("function next()")
 print("next(iterator, default)")
 
 print("""
@@ -36,7 +36,7 @@ for n in x:
 print("""
 Выражения-генераторы в отличие от списков, да и тех же генераторов списков, не хранятся в памяти целом, а записывают их в память по мере необходимости — генерации новых значений. 
 Следовательно, у нас появляется возможность работы с очень большими объемами данных, экономя при этом память.""")
-new_line("MemoryError")
+line("MemoryError")
 print("very_big_data = list(range(1000000000000))")
 # MemoryError
 print("---------А выражение-генератор позволяет этой ошибки избежать:")
@@ -57,7 +57,7 @@ very_big_data = [(n for n in range(10000))]
 print(type(very_big_data), len(very_big_data))
 # <class 'list'> 1
 
-new_line("Функции генераторы")
+line("Функции генераторы")
 print("""
 Оператор yield в отличие от оператора return не заканчивает выполнение функции, 
 а лишь останавливает-замораживает её до следующего вызова функции, 
@@ -79,7 +79,7 @@ for test in generate_test_data(10):
 # for test in generate_test_data(10):
 #    print(test)
 
-new_line()
+line()
 print("generating combinations")
 def generate_combinations(colors, sizes):
    for color in colors:
@@ -111,13 +111,13 @@ print("""
 """)
 
 
-new_line("CW1")
+line("CW1")
 def generate_urls(url, start_point, end_point):
     return [url + str(i) for i in range(start_point, end_point)]
 
 print(list(generate_urls("https://example.com/page_", 1, 6)))
 
-new_line("CW2")
+line("CW2")
 
 def generate_user_data(length, name_list, surname_list, age_list):
     count = 0
@@ -146,7 +146,7 @@ user_data_generator = generate_user_data1(5, first_names, last_names, [18, 60])
 for user in user_data_generator:
    print(user)
 short_line()
-new_line("CW4")
+line("CW4")
 
 def primes(num):
     for i in range(2, num + 1):
@@ -162,11 +162,20 @@ def primes(num):
                     yield i
                     break
 print(list(primes(10)))
+line()
 
 
-
-
-
+def generate_text():
+    text = """ tree, ocean, mountain, river, valley, desert, thunderstorm, waterfall, sunset, sunrise, breeze, hurricane, volcano, glacier, meadow, forest, canyon, lightning, snowfall, rainbow, 
+    computer, smartphone, processor, algorithm, database, encryption, network, software, hardware, automation, programming, cybersecurity, artificial, intelligence, quantum, robotics, innovation, interface, application, simulation, 
+    pizza, burger, pasta, chocolate, strawberry, avocado, cheesecake, coffee, pancake, cinnamon, lemonade, barbecue, blueberry, caramel, honey, croissant, peanut, ice, cream, smoothie, 
+    happiness, sadness, excitement, frustration, anger, relief, curiosity, anxiety, nostalgia, surprise, satisfaction, embarrassment, admiration, gratitude, loneliness, love, fear, jealousy, hope, determination, 
+    run, jump, swim, dance, whisper, explore, create, destroy, build, analyze, calculate, design, imagine, transform, develop, inspire, communicate, observe, predict, adapt""".split(',')
+    words = random.randint(6, 15)
+    return_text = ''
+    for i, j in zip(range(words), text):
+        return_text.join(j)
+    yield return_text
 
 
 

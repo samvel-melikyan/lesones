@@ -1,6 +1,6 @@
 import math
 
-from functions import new_section, new_line, short_line
+from functions import new_section, line, short_line
 
 new_section("MAP()")
 
@@ -9,7 +9,7 @@ print("""
     function — функция, которую необходимо применить к элементам итерабельного объекта.
     iterable — один или более итерабельных объектов (например, список, кортеж, множество).
 """)
-new_line("example")
+line("example")
 print("""squared = map(lambda x: x**2, [1, 2, 3, 4])
 print(list(squared))
 # [1, 4, 9, 16]""")
@@ -60,7 +60,7 @@ print(f"Given : {numbers}\nThe Result is:",result)
 
 
 new_section("FILTER")
-new_line("filter()")
+line("filter()")
 
 print("filter(function, iterable)")
 numbers = [1, 2, 3, 4, 5, 6]
@@ -84,7 +84,7 @@ excecute_tests = filter(lambda x: x["executed"], tests)
 print(list(excecute_tests))
 
 new_section("ZIP")
-new_line("zip()")
+line("zip()")
 print("zip(*iterables)")
 names = ["Alice", "Bob", "Charlie"]
 scores = [85, 90, 88]
@@ -104,13 +104,13 @@ user_data = dict(zip(headers, row))
 print(user_data)
 
 new_section("ALL & ANY")
-new_line("any()")
+line("any()")
 print("function any() returns True if one of the elements of iterable object is True"
       "\nvalues = [False, False, True, False]")
 values = [False, False, True, False]
 result = any(values)
 print(result)
-new_line("all()")
+line("all()")
 print("function all() returns True if all the elements of iterable object is True otherwise returns False"
       "\nvalues = [False, False, True, True]")
 values = [False, False, True, True]
@@ -150,7 +150,7 @@ def format_phone_number(phone_list):
 formatted_numbers = list(map(format_phone_number, phone_numbers))
 print(formatted_numbers)
 
-new_line()
+line()
 
 print("""Условие: У вас есть два списка: один с ожидаемыми результатами тестов, и второй с фактическими результатами тестов. Напишите функцию compare_test_results, 
 которая принимает оба списка и возвращает список булевых значений (True или False), показывающих, совпадает ли ожидаемый результат с фактическим для каждого теста. """)

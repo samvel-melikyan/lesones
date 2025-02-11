@@ -107,7 +107,7 @@ test('/endpoint2', 1)
 # Called /endpoint2 with 1364...
 
 
-new_line("Incapsulation")
+line("Incapsulation")
 def make_account(balance):
     def deposit(amount):
         nonlocal balance
@@ -201,7 +201,7 @@ print(round(elapsed_timer(), 1))
 # print(datetime.now().strftime("%H:%M:%S"))
 # print(type(m))
 
-new_line()
+line()
 import random
 
 def create_password_generator(length, symbols):

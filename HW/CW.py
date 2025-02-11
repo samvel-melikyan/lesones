@@ -70,12 +70,12 @@ def compare_lists(list1, list2, ignore_case=False):
                 list.append(i)
     return list
     # element in list1 but not in list2
-new_line(1)
+line(1)
 def calculate_average(*args):
     average = [x for x in args]
     return sum(average) / len(average)
 print(calculate_average(1.2, 0.9, 1.3, 1.1, 1.7))
-new_line(2)
+line(2)
 def check_data_format(**kwargs):
     for i,j in zip(kwargs.keys(), kwargs.values()):
         if type(i) is str and j.isnumeric():
