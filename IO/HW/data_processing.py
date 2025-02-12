@@ -63,3 +63,5 @@ def print_the_results():
     print(f"Пользователь с самой большой суммарной стоимостью заказов: {highest_spending_user}")
     print(f"Средняя стоимость заказа: {average_order_price:.2f}")
     print(f"Средняя стоимость товаров: {average_item_price:.2f}")
+
+print_the_results()
