@@ -1,5 +1,5 @@
 class User:
-   def set_attrs(self, login, password, name, email, role):
+   def __init__(self, login, password, name, email, role):
        self.login = login
        self.password = password
        self.name = name
@@ -10,7 +10,7 @@ class User:
        project.add_task(self, description)
 
 class Team:
-   def init_team(self, name, members=[]):
+   def __init__(self, name, members=[]):
        self.name = name
        self.members = members
 
@@ -26,42 +26,35 @@ class Team:
        return len(self.members)
 
 class Task:
-   def create_task(self, description):
+   def __init__(self, description):
        self.description = description
 
+
 class Project:
-   def create_project(self, name, team):
+   def __init__(self, name, team):
        self.name = name
        self.team = team
        self.tasks = []
 
    def add_task(self, user, description):
        if user in self.team.members:
-           task = Task()
-           task.create_task(description)
+           task = Task(description)
            self.tasks.append(task)
            print(f"Task '{description}' added to project '{self.name}'")
        else:
            print(f"User '{user.name}' is not a member of the team working on project '{self.name}'")
 
-user1 = User()
-user1.set_attrs("JohnD", "mloz512qyt", "John Doe", "john.doe@example.com", 'TechLead')
+user1 = User("JohnD", "mloz512qyt", "John Doe", "john.doe@example.com", 'TechLead')
+user2 = User("JaneD", "qw1lbz", "Jane Doe", "jane.doe@example.com", 'Python Developer')
+user3 = User("BobS", "gnsJqw12", "Bob Smith", "bob.smith@example.com", 'Python Developer')
 
-user2 = User()
-user2.set_attrs("JaneD", "qw1lbz", "Jane Doe", "jane.doe@example.com", 'Python Developer')
-
-user3 = User()
-user3.set_attrs("BobS", "gnsJqw12", "Bob Smith", "bob.smith@example.com", 'Python Developer')
-
-team = Team()
-team.init_team("Research Group")
+team = Team("Research Group")
 team.add_member(user1)
 team.add_member(user2)
 
 team.show_members()
 
-project = Project()
-project.create_project("UAV Detectron", team)
+project = Project("UAV Detectron", team)
 
 user1.create_task(project, "Find best model")
 user2.create_task(project, "Setup Environment")
