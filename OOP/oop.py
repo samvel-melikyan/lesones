@@ -1,3 +1,5 @@
+from numpy.f2py.symbolic import as_real
+
 from functions.functions import *
 
 new_section("OOP")
@@ -261,3 +263,123 @@ class User:
 user1 = User()
 user1.set_private_key('uox00b_12x')
 user1.show_private_key()
+
+# ===========
+class AreaPoint:
+    def __init__(self, i, j, height=15):
+        self.i = i
+        self.j = j
+    def show_fields(self):
+        return self.j, self.i
+
+
+area_list = []
+for i in range(3):
+    area_list.append([AreaPoint(i, j) for j in range(3)])
+
+for i in area_list:
+    for j in i:
+        print(j.show_fields())
+
+line()
+
+
+class Person:
+    arrtibutes = {}
+    def __init__(self, name=None, age=None, gender=None, occupation=None):
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.occupation = occupation
+        self.arrtibutes['name'] = name
+        self.arrtibutes['age'] = age
+        self.arrtibutes['gender'] = gender
+        self.arrtibutes['occupation'] = occupation
+
+
+    def set_attributes(self, dic: dict):
+        for key, value in dic.items():
+            setattr(self, key, value)
+            self.arrtibutes[key] = value
+
+
+    def show_card(self):
+        print(f"Name: {self.name}\nAge: {self.age}\nGender: {self.gender}\nOccupation: {self.occupation}")
+
+
+
+p1 = Person()
+p1.set_attributes({'name': 'Elon', 'age': 51, 'gender': 'Male', 'occupation': 'CEO', 'company': 'Tesla'})
+p1.show_card()
+# class_attributes = [name for name in vars(Person) if not callable(getattr(Person, name)) and not name.startswith("__")]
+# print(Person.__dict__)
+
+line()
+
+
+class Triangle:
+    def __init__(self, a, b, c):
+        self.a = a
+        self.b = b
+        self.c = c
+
+    def is_triangle(self):
+        if self.a < (self.b + self.c) and self.b < (self.a + self.c) and self.c < (self.a + self.b):
+            return True
+        else:
+            return False
+
+    def get_triangle_area(self):
+        if self.is_triangle():
+            return (self.a + self.b + self.c) / 2
+        else:
+            return 0
+
+
+
+print(Triangle(a = 3, b = 4, c = 5).is_triangle())
+
+line()
+
+
+class IntDataFrame:
+    def __init__(self, pos_num_list):
+        self.column = [int(num) for num in pos_num_list]
+
+    def count(self):
+        count = 0
+        for i in self.column:
+            if i > 0:
+                count += 1
+        return count
+
+    def unique(self):
+        return len((set(self.column)))
+
+df = IntDataFrame([4.7, 4, 3, 0, 2.4, 0.3, 4])
+
+print(df.column)
+# [4, 4, 3, 0, 2, 0, 4]
+
+print(df.count())
+# 5
+
+print(df.unique())
+# 4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
