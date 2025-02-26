@@ -1,7 +1,7 @@
 import time
 import random
 
-from functions import *
+from functions.functions import *
 
 new_section("Decorators")
 print("Декоратор — это функция, которая позволяет модифицировать и расширять поведение функций и методов, не меняя их код .")
