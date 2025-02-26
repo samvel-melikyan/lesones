@@ -187,5 +187,5 @@ pytest test.py -v -m "api"         # test.py замените на имя сво
 pytest test.py -v -m "ui and auth"
 А если нам нужно запустить все виды тесты на модули авторизации и мероприятий, то команда для запуска будет следующая:
 
-pytest test.py -v -m "auth or event"""")
+pytest test.py -v -m "auth or event""")
 
